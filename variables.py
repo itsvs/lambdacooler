@@ -28,7 +28,7 @@ WELCOME_MSG = (
     "Hello! I'm :sparkles: lambdacooler :sparkles:, your 61A-inspired "
     "watercooler. I know what it's like to be one in a crowd, so I'm going to "
     "help make you feel like you're a valuable part of staff (because you are!)"
-    ".\n\n How it works is simple. Each week, I'm going to group you with "
+    ".\n\nHow it works is simple. Each week, I'm going to group you with "
     f"{GROUP_SIZE-1} other people (hopefully unique each time), and give you a "
     "conversation starter to get you started. Want to be involved one week? "
     "Join this channel. Don't want to be involved a different week? Leave this "

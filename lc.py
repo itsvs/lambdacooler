@@ -99,13 +99,15 @@ def prepare(size):
 
 @cli.command(name="cool")
 @click.option("--id", "-i", prompt="Cooler ID", help="The cooler ID to cool.")
-def send_cooler_messages(id):
+@click.option("--test", is_flag=True)
+def send_cooler_messages(id, test):
     """Send cooler messages to the groups in ID."""
     with open(f"data/{id}.json") as f:
         groups = json.load(f)
     for g in groups:
         ids = [m["id"] for m in g]
-        ids = [var.ADMIN]
+        if test:
+            ids = [var.ADMIN]
         dm_group = slack.open_dm(ids)
         dm_group(var.COOLER_MSG)
 
