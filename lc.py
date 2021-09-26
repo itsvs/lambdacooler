@@ -151,7 +151,7 @@ def send_channel_message(message):
     "--message", type=str, default=var.JOIN_REMINDER_MSG, help="The message to send."
 )
 def send_join_reminder(message):
-    """Send a message to var.SOCIAL_CHANNEL reminding people that this exists."""
+    """Remind people in var.SOCIAL_CHANNEL about lambdacooler."""
     slack.send_message(var.SOCIAL_CHANNEL, message)
 
 

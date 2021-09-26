@@ -33,7 +33,9 @@ be open-source.
 
 [create a slack app](https://api.slack.com/apps) from scratch in the right
 workspace. add the following bot token scopes:
-- `channels:read` to allow access to information about channels, including user lists
+
+- `channels:read` to allow access to information about channels, including user
+  lists
 - `chat:write` to allow sending messages as `@lambdacooler`
 - `im:write` to allow sending individual direct messages as `@lambdacooler`
 - `mpim:write` to allow sending group direct messages `@lambdacooler`
@@ -51,13 +53,22 @@ then, install the app in your workspace and copy the bot user oauth token.
 
 ```python
 TOKEN = "<the bot user oauth token>"
+SOCIAL_CHANNEL = "<see below>"
 LAMBDACOOLER_CHANNEL = "<see below>"
 ADMIN = "<see below>"
 ```
 
-6. to get the `LAMBDACOOLER_CHANNEL` id, use the `channels` command in `lc.py` and copy the id of the channel you want to treat as your lambdacooler hub. non-bot users in this channel will be included when you prepare a cooler.
-7. to get the `ADMIN` user id, use the `users` command in `lc.py` and copy the id of your slack user (or, if the admin is someone else, then that user's id).
-8. you may need to run `chmod +x lc` in order to be able to use `./lc` instead of `python3 lc.py`. trust me, it's worth it.
+6. to get the `LAMBDACOOLER_CHANNEL` id, use the `channels` command in `lc.py`
+   and copy the id of the channel you want to treat as your lambdacooler hub.
+   non-bot users in this channel will be included when you prepare a cooler.
+8. to get the `SOCIAL_CHANNEL` id, do the same as above and copy the id of the
+   channel where lambdacooler should remind people to join the lambdacooler hub
+   channel if they want to be included when you prepare a cooler.
+10. to get the `ADMIN` user id, use the `users` command in `lc.py` and copy the
+    id of your slack user (or, if the admin is someone else, then that user's
+    id).
+12. you may need to run `chmod +x lc` in order to be able to use `./lc` instead
+    of `python3 lc.py`. trust me, it's worth it.
 
 ## usage
 
@@ -69,13 +80,14 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  channel   Send a message to var.LAMBDACOOLER_CHANNEL.
-  channels  Get all channel IDs and names in the current workspace.
-  cool      Send cooler messages to the groups in ID.
-  prepare   Prepare some coolers of SIZE or greater.
-  test      Send a test message.
-  users     Get all user IDs and names in the current workspace.
-  welcome   Send var.WELCOME_MSG to var.LAMBDACOOLER_CHANNEL.
+  channel        Send a message to var.LAMBDACOOLER_CHANNEL.
+  channels       Get all channel IDs and names in the current workspace.
+  cool           Send cooler messages to the groups in ID.
+  join-reminder  Remind people in var.SOCIAL_CHANNEL about lambdacooler.
+  prepare        Prepare some coolers of SIZE or greater.
+  test           Send a test message.
+  users          Get all user IDs and names in the current workspace.
+  welcome        Send var.WELCOME_MSG to var.LAMBDACOOLER_CHANNEL.
 ```
 
 ### sample workflow
@@ -84,9 +96,12 @@ Commands:
 2. `./lc channels` to get lambdacooler channel id
 3. `./lc test` to send yourself a test message
 4. `./lc welcome` to send a welcome message to the lambdacooler channel
-5. `./lc prepare` to prepare a grouping (let's assume it goes into `data/1632014965.json`)
-6. Change `variables.STARTER` to a fun new starter question!
-7. `./lc cool -i 1632014965` to send group direct messages to all the cooler groups in `data/1632014965.json` with the `variables.STARTER` starter question
+5. `./lc prepare` to prepare a grouping (let's assume it goes into
+   `data/1632014965.json`)
+7. Change `variables.STARTER` to a fun new starter question!
+8. `./lc cool -i 1632014965` to send group direct messages to all the cooler
+   groups in `data/1632014965.json` with the `variables.STARTER` starter
+   question
 
 ## teardown
 
