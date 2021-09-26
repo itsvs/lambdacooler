@@ -63,8 +63,13 @@ def generate(lst, size):
 
 @cli.command(name="prepare")
 @click.argument("size", type=int, default=var.GROUP_SIZE)
-def prepare(size):
-    """Prepare some coolers of SIZE or greater."""
+@click.option(
+    "--name", type=str, default=None, help="Optional name to store groups as."
+)
+def prepare(size, name):
+    """Prepare some coolers of SIZE or greater. If NAME is provided, store as
+    data/NAME.json, otherwise store as data/TIMESTAMP.json.
+    """
     users, full_info = get_users()
     random.shuffle(users)
     groups = list(generate(users, size))
@@ -87,7 +92,7 @@ def prepare(size):
         print(f"Will group: {', '.join([m['name'] for m in g])}")
         print("-------")
 
-    id = int(datetime.now().timestamp())
+    id = int(datetime.now().timestamp()) if not name else name
     if not os.path.exists("data"):
         os.makedirs("data")
     with open(f"data/{id}.json", "w") as f:
@@ -110,6 +115,8 @@ def send_cooler_messages(id, test):
             ids = [var.ADMIN]
         dm_group = slack.open_dm(ids)
         dm_group(var.COOLER_MSG)
+    if not test:
+        slack.send_message(var.LAMBDACOOLER_CHANNEL, var.COOLERS_SENT_MSG)
 
 
 @cli.command(name="test")
@@ -137,6 +144,15 @@ def send_test_message(message, to, group):
 def send_channel_message(message):
     """Send a message to var.LAMBDACOOLER_CHANNEL."""
     slack.send_message(var.LAMBDACOOLER_CHANNEL, message)
+
+
+@cli.command(name="join-reminder")
+@click.option(
+    "--message", type=str, default=var.JOIN_REMINDER_MSG, help="The message to send."
+)
+def send_join_reminder(message):
+    """Send a message to var.SOCIAL_CHANNEL reminding people that this exists."""
+    slack.send_message(var.SOCIAL_CHANNEL, message)
 
 
 @cli.command(name="welcome")

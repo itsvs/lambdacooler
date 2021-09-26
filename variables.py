@@ -20,7 +20,7 @@ from sensitive import *
 
 GROUP_SIZE = 3
 
-STARTER = "What's your favorite Greek letter and why?"
+STARTER = "What is your most understated talent?"
 
 ### The following probably don't need changing ###
 
@@ -42,6 +42,17 @@ COOLER_MSG = (
     "Find a time to meet this week for >= 20 minutes, and get to know each "
     "other :tada: When you meet, take a cool photo or screenshot and send it "
     f"in <#{LAMBDACOOLER_CHANNEL}>!\n\nHere's this week's starter: {STARTER}"
+)
+
+COOLERS_SENT_MSG = (
+    "I've just sent out this week's coolers! Make sure to share a photo when "
+    "you meet, and react to each other's captions to decide which group's the "
+    "most creative :triumph:"
+)
+
+JOIN_REMINDER_MSG = (
+    f"Remember to join <#{LAMBDACOOLER_CHANNEL}> if you want to participate in "
+    "this week's groups! I'll make these groups around 4pm today :D"
 )
 
 ### The following definitely don't need changing ###
